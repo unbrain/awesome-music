@@ -24,7 +24,7 @@
             </div>
         </form>
         `,
-        render(data) {
+        render(data={}) {
             let redata = ['name', 'url']
             let html = this.template
             redata.map((string) => {
@@ -37,7 +37,21 @@
         },
         activeBtn(){
             $(this.el).find('button').addClass('active')
-        }
+        },
+        active(){
+            $(this.el).addClass('active')
+        },
+        deactive() {
+            $(this.el).removeClass('active')
+        },
+        findUserDate(){
+            let needs = 'name url singer'.split(' ')
+            let data = {}
+            needs.map((string) => {
+                data[string] = $(this.el).find(`[name="${string}"]`).val()
+            })
+            return data
+        },
     }
     let model = {
         data: { id: '', name: '', singer: '', url: '' },
@@ -62,24 +76,20 @@
         },
         bindEvents() {
             window.eventHub.on('liClick', (data) => {
-                $(this.view.el).removeClass('active')
+                this.view.deactive()
                 this.model.data = data
                 this.view.render(this.model.data)
             })
             window.eventHub.on('newSongBtnClick', () => {
-                $(this.view.el).addClass('active')
-                this.view.render({})
+                this.view.active()
+                this.view.render()
             })
             $(this.view.el).on('click', 'input', (e) => {
                 this.view.deactiveBtn()
             })
             $(this.view.el).on('submit', 'form', (e) => {
                 e.preventDefault()
-                let needs = 'name url singer'.split(' ')
-                let data = {}
-                needs.map((string) => {
-                    data[string] = $(this.view.el).find(`[name="${string}"]`).val()
-                })
+                let data = this.view.findUserDate()
                 this.model.update(data).then(() => {
                     //刷新更新songList
                     window.eventHub.emit('update', null)
