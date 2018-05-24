@@ -51,6 +51,12 @@
             })
             return data
         },
+        active(){
+            $(this.el).addClass('active')
+        },
+        deactive(){
+            $(this.el).removeClass('active')
+        },
 
     }
     let model = {
@@ -83,7 +89,7 @@
                 this.view.render(this.model.data)
             })
             window.eventHub.on('liClick', (data) => {
-                $(this.view.el).addClass('active')
+                this.view.active()
             })
             window.eventHub.on('newSongBtnClick', () => {
                 let isChange = 0
@@ -99,7 +105,7 @@
                         this.view.render()
                     }
                 }
-                $(this.view.el).removeClass('active')
+                this.view.deactive()
             })
             $(this.view.el).on('submit', 'form', (e) => {
                 e.preventDefault()

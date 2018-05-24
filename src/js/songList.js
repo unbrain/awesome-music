@@ -4,7 +4,7 @@
         template: `
             <ul></ul>
         `,
-        render(data) {
+        render(data={}) {
             $el = $(this.el)
             $el.html(this.template)
             let { songs, selectedId } = data
