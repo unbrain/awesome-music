@@ -10,7 +10,13 @@
         `,
         render() {
             $(this.el).html(this.template)
-        }
+        },
+        active(){
+            $(this.el).addClass('active')
+        },
+        deactive(){
+            $(this.el).removeClass('active')
+        },
     }
     let model = {
         data: {},
@@ -24,12 +30,12 @@
             this.view.render(this.model.data)
             this.bindEvents()
             window.eventHub.on('liClick', (e)=>{
-                $(this.view.el).removeClass('active')
+                this.view.deactive()
             })
         },
         bindEvents(){
             $(this.view.el).on('click', ()=>{
-                $(this.view.el).addClass('active')
+                this.view.active()
                 window.eventHub.emit('newSongBtnClick', null)
             })
         },
