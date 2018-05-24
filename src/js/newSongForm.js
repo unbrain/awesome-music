@@ -57,6 +57,18 @@
         deactive(){
             $(this.el).removeClass('active')
         },
+        inputChange(){
+            let isChange = 0
+            let datas = Object.values(this.findUserData())
+            datas.map((data) => {
+                if (data !== '') {
+                    result = window.confirm('是否重置');
+                    if (result) {
+                        this.render()
+                    }
+                }
+            })
+        },
 
     }
     let model = {
@@ -92,19 +104,7 @@
                 this.view.active()
             })
             window.eventHub.on('newSongBtnClick', () => {
-                let isChange = 0
-                let datas = Object.values(this.view.findUserData())
-                datas.map((data) => {
-                    if (data !== '') {
-                        isChange = 1
-                    }
-                })
-                if (isChange) {
-                    result = window.confirm('是否重置');
-                    if (result) {
-                        this.view.render()
-                    }
-                }
+                this.view.inputChange()
                 this.view.deactive()
             })
             $(this.view.el).on('submit', 'form', (e) => {
