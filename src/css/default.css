@@ -1,0 +1,160 @@
+/* default */
+*{
+    margin: 0;padding: 0;
+    box-sizing: border-box;
+    color: #D5D6DE;
+}
+*:after,*::before{
+    box-sizing: border-box;
+}
+.icon{
+    width: 3em; height: 3em;
+    vertical-align: -0.15em;
+    fill: currentColor;
+    overflow: hidden;
+}
+body{
+    height: 100vh;
+}
+ol,li{
+    list-style: none;
+}
+button{
+    padding: .5em 1.5em;
+    border: transparent;
+    border-radius: .3em;
+    color: #C1C2C9;
+    cursor: pointer;
+}
+
+/* 样式 */
+header{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #232326;
+    height: 10vh;
+    border-bottom:  3px solid#921616;
+}
+
+.page{
+    display: flex;
+    flex-direction: column;
+}
+
+.page .page-detail{
+    height: 90vh;
+    background: url(../img/page.jpg) center;
+    display: flex;
+}
+main{
+    flex-grow: 1;
+    background: rgba(0,0,0,0.8);
+}
+aside{
+    width: 16%;
+    background: #191B1F;
+    border-right: 2px solid #23262C;
+    display: flex;
+    flex-direction: column;
+}
+.page aside .songList{
+    flex-grow:1;
+    overflow: auto;
+}
+.page aside li{
+    padding: .5em 1em;
+    background: #16181C;
+}
+.page aside li:nth-child(2n){
+    background: #1B1D20;
+}
+.page aside li:hover{
+    background: #921616;
+}
+.page aside li.active{
+    background: rgba(255,255,255,0.2);
+}
+.page .newSongButton{
+    padding: 1em 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #191B1F;
+    border-top: 1px solid #23262C;
+}
+.page .newSongButton.active{
+    background: rgba(255,255,255,0.2);
+}
+.page .newSongButton div{
+    width: 3em;
+    height: 3em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.page main{
+    display: flex;
+    flex-direction: column;
+}
+.page main .row{
+    margin: 1em;
+    padding: 0 2em;
+}
+.page main .row input{
+    background: #26282C;
+    border: transparent;
+    height: 2.2em;
+    font-size: .8em;
+    color: #C1C2C9;
+    margin-left: 2em;
+    padding: 0 .5em;
+}
+.page main .row button{
+    background: #2E4E7E;
+    margin-top: 2em;
+}
+.page main .row button.active {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+.page main h1{
+    padding: 0.5em 1em;
+    border-bottom: 1px solid #23262C;
+}
+
+.page main .newSongFrom.active{
+    display: none;
+}
+.page main .updateSongFrom.active{
+    display: none;
+}
+.page .upArea{
+    flex-grow: 1;
+    padding: 4em 2em;
+}
+.page .upArea > .draggable {
+    border-radius: .3em;
+    border: 3px dashed #BFBFBF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 2em;
+}
+.draggable > button {
+    background: #26282C;
+    border: transparent;
+    margin: 4em auto;
+}
+.add{
+    width: 2.5em; height: 2.5em;
+}
+.add:hover{
+    animation: rotate 0.9s 0s linear infinite;
+}
+@keyframes rotate {
+  0% {transform: rotate(0deg);}
+  50% {transform: rotate(180deg);}
+  100% { transform: rotate(360deg);}}

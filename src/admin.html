@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./css/default.css">
+    <script src="//at.alicdn.com/t/font_678456_7ozx971llhshh0k9.js"></script>
+    <title>音乐管理</title>
+</head>
+
+<body>
+    <div class="page">
+        <header>
+            <svg class="icon" aria-hidden="true">
+                <use xlink:href="#icon-wangyiyunyinle"></use>
+            </svg>
+        </header>
+        <div class="page-detail">
+            <aside>
+                <div class="songList">
+                </div>
+                <div class="newSongButton">
+                </div>
+            </aside>
+            <main>
+                <div class="newSongFrom active">
+                </div>
+                <div class="updateSongFrom active">
+                </div>
+            </main>
+        </div>
+    </div>
+    <!-- 依赖 -->
+    <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="../node_modules/leancloud-storage/dist/av-min.js"></script>
+    <script src="../node_modules/plupload/src/moxie/bin/js/moxie.min.js"></script>
+    <script src="../node_modules/plupload/src/plupload.js"></script>
+    <script src="https://cdn.staticfile.org/qiniu-JS-SDK/1.0.22/qiniu.min.js"></script>
+
+    <!-- 本地 -->
+    <script src="./js/avInit.js"></script>
+    <script src="./js/eventHub.js"></script>
+    <script src="./js/newSongButton.js"></script>
+    <script src="./js/songList.js"></script>
+    <script src="./js/newSongForm.js"></script>
+    <script src="./js/updateSongForm.js"></script>
+</body>
+
+</html>
