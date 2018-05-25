@@ -15,6 +15,7 @@
 }
 body{
     height: 100vh;
+    background: url(../img/page.jpg) center;
 }
 ol,li{
     list-style: none;
@@ -53,7 +54,7 @@ header{
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #fff;
+    background: transparent;
     height: 10vh;
 }
 
@@ -64,30 +65,20 @@ header{
 
 .page .page-detail{
     height: 90vh;
-    background: url(../img/page.jpg) center;
+    background: transparent;
     display: flex;
 }
 main{
     flex-grow: 1;
-    background: rgba(230,230,230,0.8);
+    background: rgba(230,230,230,0.1);
 }
 aside{
     width: 50%;
-    background: rgba(200,200,200,0.8);
+    background: rgba(200,200,200,0.1);
     display: flex;
     flex-direction: column;
 }
 .page aside .songList{
-    flex-grow: 1;
-    overflow: auto;
-    display: flex;
-    flex-direction: column;
-}
-.page aside .songList > h2{
-    font-size: 2em;
-    padding: .5em 1.5em;
-}
-.page aside .songList > ul{
     flex-grow: 1;
     padding: .5em 1em;
     background: transparent;
@@ -95,12 +86,19 @@ aside{
     margin: 1em 3em;
     box-shadow: 0px 2px 30px 0px rgba(0,0,0,0.5);
 }
+.page aside .songList > h2{
+    font-size: 2em;
+    padding: .5em 1.5em;
+}
+.page aside .songList > ul{
+    overflow: auto;
+}
 .page aside li{
     padding: .5em 1em;
     background: #FFFFFF;
     border-radius: 5px;
     margin: 1em 3em;
-    box-shadow: 0px 10px 59px 0px rgba(0,0,0,0.5);
+    box-shadow: 0px 2px 30px 0px rgba(0,0,0,0.5);
 }
 /* .page aside li:nth-child(2n){
     background: #1B1D20;
@@ -176,7 +174,7 @@ aside{
     height: 2.2em;
 }
 .page main .row input{
-    background: #efefef;
+    background: #fff;
     border: transparent;
     font-size: .8em;
     line-height: .8em;
@@ -198,8 +196,8 @@ aside{
 
 .page main .newSongFrom,
 .page main .updateSongFrom{
-    background: #fff;
-    margin: 3em;
+    background: transparent;
+    margin: 1em 3em;
     display: flex;
     flex-direction: column;
     border-radius: 5px;
