@@ -11,7 +11,7 @@
             </div>
             <div class="row">
                 <label for="">歌手:
-                    <input name="singer" type="text">
+                    <input name="singer" type="text" value="__singer__">
                 </label>
             </div>
             <div class="row">
@@ -25,7 +25,7 @@
         </form>
         `,
         render(data={}) {
-            let redata = ['name', 'url']
+            let redata = ['name', 'url', 'singer']
             let html = this.template
             redata.map((string) => {
                 html = html.replace(`__${string}__`, data[string] || '')

@@ -2,6 +2,7 @@
     let view = {
         el: '.songList',
         template: `
+        <h2>歌曲列表</h2>
             <ul></ul>
         `,
         render(data={}) {

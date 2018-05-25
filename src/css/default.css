@@ -2,7 +2,7 @@
 *{
     margin: 0;padding: 0;
     box-sizing: border-box;
-    color: #D5D6DE;
+    color: #3A436A;
 }
 *:after,*::before{
     box-sizing: border-box;
@@ -23,8 +23,29 @@ button{
     padding: .5em 1.5em;
     border: transparent;
     border-radius: .3em;
-    color: #C1C2C9;
+    color: #fff;
     cursor: pointer;
+    background: #397DFF;
+}
+
+/* 滚动条 */
+/* 设置滚动条的样式 */
+::-webkit-scrollbar {
+    width: 10px;
+}
+/* 滚动槽 */
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    border-radius: 10px;
+}
+/* 滚动条滑块 */
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background: #bbb;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+}
+::-webkit-scrollbar-thumb:window-inactive {
+    background: rgba(255,0,0,0.4);
 }
 
 /* 样式 */
@@ -32,9 +53,8 @@ header{
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #232326;
+    background: #fff;
     height: 10vh;
-    border-bottom:  3px solid#921616;
 }
 
 .page{
@@ -49,42 +69,69 @@ header{
 }
 main{
     flex-grow: 1;
-    background: rgba(0,0,0,0.8);
+    background: rgba(230,230,230,0.8);
 }
 aside{
-    width: 16%;
-    background: #191B1F;
-    border-right: 2px solid #23262C;
+    width: 50%;
+    background: rgba(200,200,200,0.8);
     display: flex;
     flex-direction: column;
 }
 .page aside .songList{
-    flex-grow:1;
+    flex-grow: 1;
     overflow: auto;
+    display: flex;
+    flex-direction: column;
+}
+.page aside .songList > h2{
+    font-size: 2em;
+    padding: .5em 1.5em;
+}
+.page aside .songList > ul{
+    flex-grow: 1;
+    padding: .5em 1em;
+    background: transparent;
+    border-radius: 5px;
+    margin: 1em 3em;
+    box-shadow: 0px 2px 30px 0px rgba(0,0,0,0.5);
 }
 .page aside li{
     padding: .5em 1em;
-    background: #16181C;
+    background: #FFFFFF;
+    border-radius: 5px;
+    margin: 1em 3em;
+    box-shadow: 0px 10px 59px 0px rgba(0,0,0,0.5);
 }
-.page aside li:nth-child(2n){
+/* .page aside li:nth-child(2n){
     background: #1B1D20;
-}
+} */
 .page aside li:hover{
-    background: #921616;
+    background: #397DFF;
+    color: #FFFFFF;
 }
 .page aside li.active{
     background: rgba(255,255,255,0.2);
 }
 .page .newSongButton{
-    padding: 1em 0;
+    padding: 1em 1em;
+    background: transparent;
+    border-radius: 5px;
+    margin: 1em 3em;
+    box-shadow: 0px 10px 59px 0px rgba(0,0,0,0.5);
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #191B1F;
-    border-top: 1px solid #23262C;
 }
-.page .newSongButton.active{
-    background: rgba(255,255,255,0.2);
+.page .newSongButton:hover{
+    animation: small 0.9s 0s linear infinite alternate-reverse;
+}
+@keyframes small {
+  0% {transform: scale(0.95);}
+  50% {transform: rotate(0.9);}
+  100% { transform: rotate(0.85);}}
+
+.page .newSongButton.active .add{
+   animation: rotate 0.9s 0s linear infinite;
 }
 .page .newSongButton div{
     width: 3em;
@@ -93,60 +140,18 @@ aside{
     align-items: center;
     justify-content: center;
 }
-
-.page main{
-    display: flex;
-    flex-direction: column;
-}
-.page main .row{
-    margin: 1em;
-    padding: 0 2em;
-}
-.page main .row input{
-    background: #26282C;
-    border: transparent;
-    height: 2.2em;
-    font-size: .8em;
-    color: #C1C2C9;
-    margin-left: 2em;
-    padding: 0 .5em;
-}
-.page main .row button{
-    background: #2E4E7E;
-    margin-top: 2em;
-}
-.page main .row button.active {
-    opacity: 0.3;
-    cursor: not-allowed;
-}
-.page main h1{
-    padding: 0.5em 1em;
-    border-bottom: 1px solid #23262C;
-}
-
-.page main .newSongFrom.active{
-    display: none;
-}
-.page main .updateSongFrom.active{
-    display: none;
-}
 .page .upArea{
     flex-grow: 1;
     padding: 4em 2em;
 }
 .page .upArea > .draggable {
     border-radius: .3em;
-    border: 3px dashed #BFBFBF;
+    border: 3px dashed #dFdFdF;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     padding: 2em;
-}
-.draggable > button {
-    background: #26282C;
-    border: transparent;
-    margin: 4em auto;
 }
 .add{
     width: 2.5em; height: 2.5em;
@@ -158,3 +163,62 @@ aside{
   0% {transform: rotate(0deg);}
   50% {transform: rotate(180deg);}
   100% { transform: rotate(360deg);}}
+
+.page main{
+    display: flex;
+    flex-direction: column;
+}
+.page main .row{
+    margin: 1em;
+    padding: 0 2em;
+}
+.page main .row label{
+    height: 2.2em;
+}
+.page main .row input{
+    background: #efefef;
+    border: transparent;
+    font-size: .8em;
+    line-height: .8em;
+    margin-left: 2em;
+    padding: .5em;
+    border-radius: 5px;
+    display: inline-block;
+}
+.page main .row button{
+    margin: 2em 0;
+}
+.page main .row button.active {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+.page main h1{
+    padding: 0.5em 1em;
+}
+
+.page main .newSongFrom,
+.page main .updateSongFrom{
+    background: #fff;
+    margin: 3em;
+    display: flex;
+    flex-direction: column;
+    border-radius: 5px;
+    box-shadow: 0px 10px 59px 0px rgba(0,0,0,0.5);
+    animation: ball-scale 1s 0s ease-in-out;
+}
+.page main .newSongFrom.active{
+    display: none;
+}
+.page main .updateSongFrom.active{
+    display: none;
+}
+
+@keyframes ball-scale {
+  0% {
+    transform: scale(0.0);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1.0);
+  }
+}

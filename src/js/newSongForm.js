@@ -5,9 +5,9 @@
         <h1>新建歌曲</h1>
                     <form action="">
                         <div class="row">
-                            <label for="">歌名:
+                            <label for="">歌名:</label>
                                 <input name="name" type="text" value="__name__">
-                            </label>
+                            
                         </div>
                         <div class="row">
                             <label for="">歌手:
