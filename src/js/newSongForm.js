@@ -3,35 +3,36 @@
         el: '.newSongFrom',
         template: `
         <h1>新建歌曲</h1>
-                    <form action="">
-                        <div class="row">
-                            <label for="">歌名:</label>
-                                <input name="name" type="text" value="__name__">
-                            
-                        </div>
-                        <div class="row">
-                            <label for="">歌手:
-                                <input name="singer" type="text">
-                            </label>
-                        </div>
-                        <div class="row">
-                            <label for="">外链:
-                                <input name="url" type="text" value="__url__">
-                            </label>
-                        </div>
-                        <div class="row">
-                            <button type="submit">保存</button>
-                        </div>
-                        <div class="upArea">
-                            <div id="container" class="draggable">
-                                <button id="up" class="clickable">
-                                    上传或拖曳文件
-                                </button>
-                                <p>大小控制在 20 M</p>
-                                <p id="upText">...</p>
-                            </div>
-                        </div>
-                    </form>`,
+        <form action="">
+            <div class="row">
+                <label for="">歌名:</label>
+                    <input name="name" type="text" value="__name__">
+                
+            </div>
+            <div class="row">
+                <label for="">歌手:
+                    <input name="singer" type="text">
+                </label>
+            </div>
+            <div class="row">
+                <label for="">外链:
+                    <input name="url" type="text" value="__url__">
+                </label>
+            </div>
+            <div class="row">
+                <button type="submit">保存</button>
+            </div>
+            </form>
+            <div class="upArea">
+                <div id="container" class="draggable">
+                    <button id="up" class="clickable">
+                        上传或拖曳文件
+                    </button>
+                    <p>大小控制在 20 M</p>
+                    <p id="upText">...</p>
+                </div>
+            </div>
+        `,
         find(selector) {
             return $(this.el).find(selector)[0]
         },
@@ -101,6 +102,7 @@
                 this.view.render(this.model.data)
             })
             window.eventHub.on('liClick', (data) => {
+                this.view.render()
                 this.view.active()
             })
             window.eventHub.on('newSongBtnClick', () => {
@@ -113,20 +115,12 @@
                 this.model.new(data).then(() => {
                     //无刷新更新songList
                     window.eventHub.emit('new', this.model.data)
+                    this.view.render()
                 })
             })
         },
         Qiniuinit() {
-            // var TestObject = AV.Object.extend('TestObject');
-            // var testObject = new TestObject();
-            // testObject.save({
-            //     words: 'Hello World!'
-            // }).then(function (object) {
-            //     alert('LeanCloud Rocks!');
-            // }, () => {
-            //     alert('fuck')
-            // })
-            var uploader = Qiniu.uploader({
+            let uploader = Qiniu.uploader({
                 disable_statistics_report: false,   // 禁止自动发送上传统计信息到七牛，默认允许发送
                 runtimes: 'html5',      // 上传模式,依次退化
                 browse_button: this.view.find('#up'),         // 上传选择的点选按钮，**必需**
@@ -178,6 +172,7 @@
                     'UploadProgress': function (up, file) {
                         // 每个文件上传时,处理相关的事情
                         upText.textContent = '...ing...'
+                        window.eventHub.emit('viewloading')
                     },
                     'FileUploaded': function (up, file, info) {
                         // 每个文件上传成功后,处理相关的事情
@@ -199,11 +194,13 @@
                     'Error': function (up, err, errTip) {
                         //上传出错时,处理相关的事情
                     },
-                    'UploadComplete': function () {
+                    'UploadComplete': () => {
                         //队列文件处理完毕后,处理相关的事情
                         upText.textContent = 'success'
+                        
                         setTimeout(() => {
-                            upText.textContent = '...'
+                            window.eventHub.emit('hiddenloading')
+                            this.Qiniuinit()
                         }, 3000);
                     },
                     // 'Key': function (up, file) {

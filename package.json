@@ -13,6 +13,6 @@
     "leancloud-storage": "^3.6.8",
     "plupload": "^2.3.6",
     "qiniu": "^7.1.7",
-    "qiniu-js": "^2.2.2"
+    "qiniu-js": "^1.0.22"
   }
 }

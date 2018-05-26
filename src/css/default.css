@@ -15,7 +15,7 @@
 }
 body{
     height: 100vh;
-    background: url(../img/page.jpg) center;
+    background: url(../img/page.jpg);
 }
 ol,li{
     list-style: none;
@@ -71,10 +71,11 @@ header{
 main{
     flex-grow: 1;
     background: rgba(230,230,230,0.1);
+    display: flex;
 }
 aside{
     width: 50%;
-    background: rgba(200,200,200,0.1);
+    background: rgba(230,230,230,0.1);
     display: flex;
     flex-direction: column;
 }
@@ -85,17 +86,22 @@ aside{
     border-radius: 5px;
     margin: 1em 3em;
     box-shadow: 0px 2px 30px 0px rgba(0,0,0,0.5);
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
 }
 .page aside .songList > h2{
     font-size: 2em;
     padding: .5em 1.5em;
 }
-.page aside .songList > ul{
+.page aside .songList ul{
+    flex-grow: 1;
     overflow: auto;
 }
+
 .page aside li{
     padding: .5em 1em;
-    background: #FFFFFF;
+    background: rgba(255,255,255,0.2);
     border-radius: 5px;
     margin: 1em 3em;
     box-shadow: 0px 2px 30px 0px rgba(0,0,0,0.5);
@@ -105,10 +111,9 @@ aside{
 } */
 .page aside li:hover{
     background: #397DFF;
-    color: #FFFFFF;
 }
 .page aside li.active{
-    background: rgba(255,255,255,0.2);
+    background: #FFFFFF;
 }
 .page .newSongButton{
     padding: 1em 1em;
@@ -194,6 +199,7 @@ aside{
     padding: 0.5em 1em;
 }
 
+
 .page main .newSongFrom,
 .page main .updateSongFrom{
     background: transparent;
@@ -203,6 +209,7 @@ aside{
     border-radius: 5px;
     box-shadow: 0px 10px 59px 0px rgba(0,0,0,0.5);
     animation: ball-scale 1s 0s ease-in-out;
+    flex-grow: 1;
 }
 .page main .newSongFrom.active{
     display: none;
@@ -220,3 +227,59 @@ aside{
     transform: scale(1.0);
   }
 }
+
+.site-loading{
+    visibility: hidden;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+}
+.site-loading.active{
+    visibility: visible;
+}
+.line-scale{
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.line-scale > div {
+  background-color: #fff;
+  width: 4px;
+  height: 35px;
+  border-radius: 2px;
+  margin: 2px;
+  -webkit-animation-fill-mode: both;
+          animation-fill-mode: both;
+  display: inline-block; }
+@keyframes line-scale {
+  0% {
+    -webkit-transform: scaley(1);
+            transform: scaley(1); }
+  50% {
+    -webkit-transform: scaley(0.4);
+            transform: scaley(0.4); }
+  100% {
+    -webkit-transform: scaley(1);
+            transform: scaley(1); } }
+
+.line-scale > div:nth-child(1) {
+  -webkit-animation: line-scale 1s -0.4s infinite cubic-bezier(0.2, 0.68, 0.18, 1.08);
+          animation: line-scale 1s -0.4s infinite cubic-bezier(0.2, 0.68, 0.18, 1.08); }
+
+.line-scale > div:nth-child(2) {
+  -webkit-animation: line-scale 1s -0.3s infinite cubic-bezier(0.2, 0.68, 0.18, 1.08);
+          animation: line-scale 1s -0.3s infinite cubic-bezier(0.2, 0.68, 0.18, 1.08); }
+
+.line-scale > div:nth-child(3) {
+  -webkit-animation: line-scale 1s -0.2s infinite cubic-bezier(0.2, 0.68, 0.18, 1.08);
+          animation: line-scale 1s -0.2s infinite cubic-bezier(0.2, 0.68, 0.18, 1.08); }
+
+.line-scale > div:nth-child(4) {
+  -webkit-animation: line-scale 1s -0.1s infinite cubic-bezier(0.2, 0.68, 0.18, 1.08);
+          animation: line-scale 1s -0.1s infinite cubic-bezier(0.2, 0.68, 0.18, 1.08); }
+
+.line-scale > div:nth-child(5) {
+  -webkit-animation: line-scale 1s 0s infinite cubic-bezier(0.2, 0.68, 0.18, 1.08);
+          animation: line-scale 1s 0s infinite cubic-bezier(0.2, 0.68, 0.18, 1.08); }
