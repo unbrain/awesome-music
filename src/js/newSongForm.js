@@ -100,10 +100,12 @@
             window.eventHub.on('upload', (data) => {
                 Object.assign(this.model.data, data)
                 this.view.render(this.model.data)
+                this.Qiniuinit()
             })
             window.eventHub.on('liClick', (data) => {
                 this.view.render()
                 this.view.active()
+                this.Qiniuinit()
             })
             window.eventHub.on('newSongBtnClick', () => {
                 this.view.inputChange()
@@ -115,7 +117,6 @@
                 this.model.new(data).then(() => {
                     //无刷新更新songList
                     window.eventHub.emit('new', this.model.data)
-                    this.view.render()
                 })
             })
         },
@@ -200,7 +201,6 @@
                         
                         setTimeout(() => {
                             window.eventHub.emit('hiddenloading')
-                            this.Qiniuinit()
                         }, 3000);
                     },
                     // 'Key': function (up, file) {
