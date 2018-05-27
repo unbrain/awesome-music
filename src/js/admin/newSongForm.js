@@ -93,23 +93,21 @@
             this.view = view
             this.model = model
             this.view.render(this.model.data)
-            this.Qiniuinit()
             this.bindEvents()
         },
         bindEvents() {
             window.eventHub.on('upload', (data) => {
                 Object.assign(this.model.data, data)
                 this.view.render(this.model.data)
-                this.Qiniuinit()
             })
             window.eventHub.on('liClick', (data) => {
                 this.view.render()
                 this.view.active()
-                this.Qiniuinit()
             })
             window.eventHub.on('newSongBtnClick', () => {
                 this.view.inputChange()
                 this.view.deactive()
+                this.Qiniuinit()
             })
             $(this.view.el).on('submit', 'form', (e) => {
                 e.preventDefault()
@@ -198,7 +196,6 @@
                     'UploadComplete': () => {
                         //队列文件处理完毕后,处理相关的事情
                         upText.textContent = 'success'
-                        
                         setTimeout(() => {
                             window.eventHub.emit('hiddenloading')
                         }, 3000);
