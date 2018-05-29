@@ -98,7 +98,7 @@ section.topbar > a::after{
   font-size: 17px;
   line-height: 1;
   padding-left: 9px;
-  margin: 20px 0 8px;
+  margin: 20px 0 8px 0;
   position: relative;
 }
 .sectionTitle::after{
@@ -139,7 +139,7 @@ section.playlists > ol.songs{
 }
 section.playlists > ol.songs > li{
   width: 32.8%;
-  margin: 8px 0;
+  margin: 8px 0px 3px 0;
 }
 section.playlists > ol.songs > li img{
   width: 100%;
@@ -169,7 +169,6 @@ section.playlists > ol.songs > li .cover .cover-detail{
     background-repeat: no-repeat;
     background-size: 11px 10px;
     text-shadow: 1px 0 0 rgba(0,0,0,.15);
-    
 }
 section.playlists > ol.songs > li .cover .cover-detail::after{
     content: " ";
@@ -183,38 +182,51 @@ section.playlists > ol.songs > li .cover .cover-detail::after{
 
 
 section.songs{}
-section.songs > .list {
-  margin-top: 18px;
+section.songs .newSong{
+  margin-top: 33px;
+  margin-bottom: 14px;
 }
-section.songs > .list > li > h3{
+section.songs .songlink{
+  display: flex;
+  margin-left: 10px;
+}
+section.songs .songDetail{
+  padding: 6px 0;
+  display: flex;
+  border-bottom: 1px solid rgb(246, 246, 247);
+  position: relative;
+  flex: 1 1 auto;
+}
+section.songs .songName{
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+    
+
+section.songs > .list h3{
   font-size: 17px;
 }
-section.songs > .list > li > p{
+section.songs > .list p{
   font-size: 12px;
   color: #888;
 }
-section.songs > .list > li{
-  position: relative;
-  margin-left: 10px;
-  padding-bottom: 6px;
-  padding-top: 5px;
-  border-bottom: 1px solid #E2E2E3;
-}
-section.songs > .list .playButton{
-  position: absolute;
-  right:8px;
-  top: 50%;
-  transform: translateY(-50%);
-}
-section.songs > .list .icon-play{
+section.songs  .playbtn {
+  display: inline-block;
   width: 22px;
   height: 22px;
-  vertical-align: middle;
-  fill: #AAA;
+  background: url(//s3.music.126.net/m/s/img/index_icon_2x.png?5207a28…) no-repeat;
+  background-size: 166px 97px;
+
+  background-position: -24px 0;  
 }
-section.songs > .list .icon-sq{
-  fill: #FE672E;
+section.songs  .play{
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  padding: 0 10px;
 }
+
 
 section.art{
   padding-top: 38px;
