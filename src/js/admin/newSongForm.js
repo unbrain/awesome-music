@@ -117,7 +117,7 @@
                     window.eventHub.emit('new', this.model.data)
                 })
             })
-        },
+        },        
         Qiniuinit() {
             let uploader = Qiniu.uploader({
                 disable_statistics_report: false,   // 禁止自动发送上传统计信息到七牛，默认允许发送
@@ -212,6 +212,7 @@
                 }
             });
         }
+
     }
     controller.init(view, model)
 }
