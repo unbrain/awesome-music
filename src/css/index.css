@@ -202,7 +202,6 @@ section.songs .songName{
   flex-direction: column;
   flex-grow: 1;
 }
-    
 
 section.songs > .list h3{
   font-size: 17px;
