@@ -12,7 +12,10 @@
         bindEvent(){
             $(this.view.el).on('click', '.tabs-nav > li', (e) => {
                 let $li = $(e.currentTarget)
+                let tabName = $li.attr('data-tab-name')
                 $li.addClass('active').siblings().removeClass('active')
+                console.log(tabName)
+                window.eventHub.emit('navClick', tabName)
             })
         }
     }
