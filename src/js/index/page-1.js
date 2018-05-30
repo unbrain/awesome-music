@@ -17,7 +17,6 @@
         },
         bindEvents(){
             window.eventHub.on('navClick', (e) => {
-                console.log(e)
                 if (e === 'page-1'){
                     this.view.show()
                 }else{
