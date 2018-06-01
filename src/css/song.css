@@ -89,6 +89,17 @@ body{font:14px/1.5 Helvetica,sans-serif;background-color: #666;}
     animation: circle 20s infinite linear;
     animation-play-state: running;
 }
+.songPlay{
+    position: absolute;
+    width: 56px;
+    height: 56px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    z-index: 10;
+    background: url(../img/down.png) 0 0 no-repeat;
+    background-size: contain;
+}
 .lrcCover{
     color: #333;
     padding: 0 35px;
@@ -248,7 +259,11 @@ h2{
         font-size: 13px;
     }
     .lrc{
-    font-size: 13px;
-    height: 72px;
+        font-size: 13px;
+        height: 72px;
+    }
+    .songPlay{
+        width: 50px;
+        height: 50px;
     }
 }
