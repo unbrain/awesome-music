@@ -1,12 +1,10 @@
 
 {
     let view = {
-        el: '#app',
+        el: 'function',
         template: `
         <audio src="{{url}}"></audio>
         <div>
-            <button class="play">play</button>
-            <button class="pause">pause</button>
         </div>`,
         render(data){
             $(this.el).html(this.template.replace('{{url}}', data))

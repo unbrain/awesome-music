@@ -17,6 +17,7 @@ body{font:14px/1.5 Helvetica,sans-serif;}
   fill: currentColor;
   overflow: hidden;
 }
+
 body{
   color: #333;
   font-size: 15px;
@@ -68,11 +69,13 @@ section.topbar > a::after{
   display: flex;
   border-bottom: 1px solid #E6E6E6;
 }
+
 .tabs-nav > li{
   width: 33.333333%;
   display: flex;
   justify-content: center;
   align-items: center;
+  top: 1px;
 }
 .tabs-nav >li >.text{
   position: relative;
