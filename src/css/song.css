@@ -10,6 +10,19 @@ h1,h2,h3,h4,h5,h6{ font-weight: normal; }
 body{font:14px/1.5 Helvetica,sans-serif;background-color: #666;}
 #app{
     height: 100vh;
+    position: relative;
+}
+#app::after{
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    filter: blur(35px);
+    z-index: 1;
 }
 .details{
     position: relative;
@@ -51,6 +64,7 @@ body{font:14px/1.5 Helvetica,sans-serif;background-color: #666;}
     background: url(../img/needle.png) no-repeat;
     background-size: contain;
 }
+
 @keyframes circle{
   0% {transform: rotate(0deg); } 
   100% {transform: rotate(360deg); } 
@@ -99,6 +113,10 @@ body{font:14px/1.5 Helvetica,sans-serif;background-color: #666;}
     z-index: 10;
     background: url(../img/down.png) 0 0 no-repeat;
     background-size: contain;
+    visibility: hidden;
+}
+.songPlay.active{
+    visibility: visible;
 }
 .lrcCover{
     color: #333;
@@ -125,7 +143,7 @@ h2{
 }
 .mlrc{
     position: relative;
-    margin-top: 14px;,
+    margin-top: 14px;
 }
 .lrc{
     height: 88px;
@@ -250,7 +268,7 @@ h2{
         height: 122px;
     }
     .discCover{
-    background: url(../img/disc.png) no-repeat;
+        background: url(../img/disc.png) no-repeat;
     }
     .name{
         font-size: 15px;

@@ -1,21 +1,28 @@
-
 {
     let view = {
-        el: 'function',
-        template: `
-        <audio src="{{url}}"></audio>
-        <div>
-        </div>`,
-        render(data){
-            $(this.el).html(this.template.replace('{{url}}', data))
+        el: '#app',
+        render(data) {
+            // console.log(data)
+            // $(this.el+':after').css('background-image', "url(" + data.img + ")")
+            // console.log(0)
+            $(this.el).find('audio').attr('src', data.url)
+            $(this.el).find('.page').css('background-image', "url(" + data.img + ")")
+            $(this.el).find('.name').text(data.name)
+            $(this.el).find('.singer').text(data.singer)
         },
-        play(){
+        play() {
             let audio = $(this.el).find('audio')[0]
             audio.play()
         },
-        pause(){
+        pause() {
             let audio = $(this.el).find('audio')[0]
             audio.pause()
+        },
+        active() {
+            $(this.el).find('.songPlay').addClass('active')
+        },
+        deactive() {
+            $(this.el).find('.songPlay').removeClass('active')
         },
     }
     let model = {
@@ -23,35 +30,45 @@
             id: '',
             singer: '',
             name: '',
-            url: ''
+            url: '',
+            img: '',
+            status: true,
         },
-        setData(data){
+        setData(data) {
             var query = new AV.Query('Song');
-            return query.get(data).then( (song) => {
-                Object.assign(this.data, {id: song.id, ...song.attributes})
+            return query.get(data).then((song) => {
+                Object.assign(this.data, { id: song.id, ...song.attributes })
             }, function (error) {
                 // 异常处理
             });
         }
     }
     let controller = {
-        init(view, model){
+        init(view, model) {
             this.view = view
             this.model = model
             this.model.setData(this.getId()).then(() => {
-                this.view.render(this.model.data.url)
+                this.view.render(this.model.data)
+                this.view.play()
             })
             this.bindEvents()
         },
-        bindEvents(){
-            $(this.view.el).on('click', '.play', () => {
-                this.view.play()
-            })
-            $(this.view.el).on('click', '.pause', () => {
-                this.view.pause()
+        bindEvents() {
+            console.log(1)
+            $(this.view.el).on('click', '.discCover', () => {
+                if (this.model.data.status) {
+                    this.view.pause()
+                    this.view.active()
+                    this.model.data.status = false
+                } else {
+                    this.view.play()
+                    this.model.data.status = true
+                    this.view.deactive()
+                }
+
             })
         },
-        getId(){
+        getId() {
             let search = window.location.search
             if (search.indexOf('?') === 0) {
                 search = search.substring(1)

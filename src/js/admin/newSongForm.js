@@ -20,6 +20,11 @@
                 </label>
             </div>
             <div class="row">
+                <label for="">图片:
+                    <input name="img" type="text" value="__img__">
+                </label>
+            </div>
+            <div class="row">
                 <button type="submit">保存</button>
             </div>
             </form>
@@ -37,7 +42,7 @@
             return $(this.el).find(selector)[0]
         },
         render(data = {}) {
-            let palceholders = ['name', 'url']
+            let palceholders = ['name', 'url', 'img']
             let html = this.template
             palceholders.map((string) => {
                 html = html.replace(`__${string}__`, data[string] || '')
@@ -45,7 +50,7 @@
             $(this.el).html(html)
         },
         findUserData() {
-            let needs = 'name singer url'.split(' ')
+            let needs = 'name singer url img'.split(' ')
             let data = {}
             needs.map((string) => {
                 data[string] = $(this.el).find(`[name="${string}"]`).val()
@@ -73,13 +78,14 @@
 
     }
     let model = {
-        data: { id: '', name: '', url: '', singer: '' },
+        data: { id: '', name: '', url: '', singer: '' , img: ''},
         new(data) {
             var Song = AV.Object.extend('Song');
             var song = new Song();
             song.set('name', data.name)
             song.set('singer', data.singer)
             song.set('url', data.url)
+            song.set('img', data.img)
             return song.save().then((newSong) => {
                 let { id, attributes } = newSong
                 this.data = { id, ...attributes }
