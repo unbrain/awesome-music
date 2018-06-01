@@ -15,6 +15,7 @@
             this.model = model
             this.bindEvents()
             this.loadModule1()
+            this.loadModule2()
         },
         bindEvents(){
             window.eventHub.on('navClick', (e) => {
@@ -25,11 +26,19 @@
                 }
             })
         },
-        loadModule1(){
+        loadModule1() {
+            let script1 = document.createElement('script')
+            script1.src = './js/index/loading.js'
+            script1.onload = function () {
+                console.log('模块一加载完毕')
+            }
+            document.body.appendChild(script1)
+        },
+        loadModule2(){
             let script1 = document.createElement('script')
             script1.src = './js/index/getSongList.js'
             script1.onload = function () {
-                console.log('模块一加载完毕')
+                console.log('模块二加载完毕')
             }
             document.body.appendChild(script1)
         },

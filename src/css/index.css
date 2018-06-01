@@ -290,3 +290,6 @@ section.art .copyright{
   margin: 2px;
   animation-fill-mode: both;
   display: inline-block; }
+.line-scale.active{
+    display: none;
+}

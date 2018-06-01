@@ -16,7 +16,6 @@
         render(data = {}) {
             let { songs } = data
             songs.map((song) => {
-                
                 let $li = $(this.template
                     .replace('{{song.name}}', song.name)
                     .replace('{{song.singer}}', song.singer)
@@ -24,7 +23,10 @@
 
                 $(this.el).find('ol.list').append($li)
             })
-            console.log(2)
+        },
+        deactive() {
+            console.log(0)
+            $(this.el).find('.line-scale').addClass('active')
         },
     }
     let model = {
@@ -47,9 +49,8 @@
             this.view = view
             this.model = model
             this.model.find().then(()=>{
-                console.log(1)
+                this.view.deactive()
                 this.view.render(this.model.data)
-
             })
         }
     }
