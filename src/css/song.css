@@ -7,22 +7,20 @@ a{color: inherit; text-decoration: none;}
 ul,ol{list-style: none;}
 h1,h2,h3,h4,h5,h6{ font-weight: normal; }
 
-body{font:14px/1.5 Helvetica,sans-serif;background-color: #666;}
+body{font:14px/1.5 Helvetica,sans-serif;background-color: #888}
 #app{
     height: 100vh;
     position: relative;
 }
-#app::after{
-    content: '';
-    display: block;
+.apppage{
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     background-size: cover;
-    filter: blur(35px);
-    z-index: 1;
+    filter: blur(20px);
+    background-image: url();
 }
 .details{
     position: relative;
@@ -82,7 +80,9 @@ body{font:14px/1.5 Helvetica,sans-serif;background-color: #666;}
     background-size: contain;
     z-index: 3;
     animation: circle 20s infinite linear;
-    animation-play-state: running;
+}
+.discLightCover > div.active{
+    animation-play-state: paused;
 }
 .pageCover{
     width: 184px;
@@ -101,7 +101,9 @@ body{font:14px/1.5 Helvetica,sans-serif;background-color: #666;}
     background: url(//s3.music.126.net/m/s/img/disc_default.png?7c9b3ad…) no-repeat;
     background-size: contain;
     animation: circle 20s infinite linear;
-    animation-play-state: running;
+}
+.page.active{
+    animation-play-state: paused;
 }
 .songPlay{
     position: absolute;
@@ -177,6 +179,7 @@ h2{
     background-position: 0 0;
     animation: shining 1.2s steps(1) infinite;
 }
+
 .function{
     position: fixed;
     left: 0;
@@ -269,6 +272,7 @@ h2{
     }
     .discCover{
         background: url(../img/disc.png) no-repeat;
+        background-size: cover;
     }
     .name{
         font-size: 15px;

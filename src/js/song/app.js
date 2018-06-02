@@ -3,7 +3,7 @@
         el: '#app',
         render(data) {
             // console.log(data)
-            // $(this.el+':after').css('background-image', "url(" + data.img + ")")
+            $(this.el).find('.apppage').css('background-image', "url(" + data.img + ")")
             // console.log(0)
             $(this.el).find('audio').attr('src', data.url)
             $(this.el).find('.page').css('background-image', "url(" + data.img + ")")
@@ -20,9 +20,13 @@
         },
         active() {
             $(this.el).find('.songPlay').addClass('active')
+            $(this.el).find('.page').addClass('active')
+            $(this.el).find('.discLightCover > div').addClass('active')
         },
         deactive() {
             $(this.el).find('.songPlay').removeClass('active')
+            $(this.el).find('.page').removeClass('active')
+            $(this.el).find('.discLightCover > div').removeClass('active')
         },
     }
     let model = {
@@ -54,8 +58,7 @@
             this.bindEvents()
         },
         bindEvents() {
-            console.log(1)
-            $(this.view.el).on('click', '.discCover', () => {
+            $(this.view.el).on('click', '.songdisc', () => {
                 if (this.model.data.status) {
                     this.view.pause()
                     this.view.active()
@@ -66,6 +69,12 @@
                     this.view.deactive()
                 }
 
+            })
+            let audio = $(this.view.el).find('audio')[0]
+            $(audio).on('ended', ()=>{
+                this.view.pause()
+                this.view.active()
+                this.model.data.status = false
             })
         },
         getId() {
