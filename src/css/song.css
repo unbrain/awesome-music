@@ -153,6 +153,10 @@ h2{
     line-height: 1.5;
     overflow: hidden;
 }
+.lrc > p{
+    margin: 0 auto;
+    text-align: center
+}
 .giude{
     bottom: -14px;
     height: 36px;
