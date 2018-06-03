@@ -188,6 +188,14 @@ aside{
     border-radius: 5px;
     display: inline-block;
 }
+.page main .row textarea{
+    background: #fff;
+    border: transparent;
+    font-size: .8em;
+    margin-left: 2.3em;
+    border-radius: 5px;
+    padding-left: .5em;
+}
 .page main .row button{
     margin: 2em 0;
 }

@@ -11,7 +11,7 @@
             </div>
             <div class="row">
                 <label for="">歌手:
-                    <input name="singer" type="text">
+                    <input name="singer" type="text" value="__singer__">
                 </label>
             </div>
             <div class="row">
@@ -22,6 +22,12 @@
             <div class="row">
                 <label for="">图片:
                     <input name="img" type="text" value="__img__">
+                </label>
+            </div>
+            
+            <div class="row">
+                <label for="">歌词:
+                    <textarea name="lrc">__lrc__</textarea>
                 </label>
             </div>
             <div class="row">
@@ -42,7 +48,7 @@
             return $(this.el).find(selector)[0]
         },
         render(data = {}) {
-            let palceholders = ['name', 'url', 'img']
+            let palceholders = ['name', 'singer', 'url', 'img', 'lrc']
             let html = this.template
             palceholders.map((string) => {
                 html = html.replace(`__${string}__`, data[string] || '')
@@ -50,7 +56,7 @@
             $(this.el).html(html)
         },
         findUserData() {
-            let needs = 'name singer url img'.split(' ')
+            let needs = 'name singer url img lrc'.split(' ')
             let data = {}
             needs.map((string) => {
                 data[string] = $(this.el).find(`[name="${string}"]`).val()
@@ -78,7 +84,7 @@
 
     }
     let model = {
-        data: { id: '', name: '', url: '', singer: '' , img: ''},
+        data: { id: '', name: '', url: '', singer: '' , img: '', lrc: ''},
         new(data) {
             var Song = AV.Object.extend('Song');
             var song = new Song();
@@ -86,6 +92,7 @@
             song.set('singer', data.singer)
             song.set('url', data.url)
             song.set('img', data.img)
+            todo.set('lrc', data.lrc);
             return song.save().then((newSong) => {
                 let { id, attributes } = newSong
                 this.data = { id, ...attributes }

@@ -25,12 +25,17 @@
                 </label>
             </div>
             <div class="row">
+                <label for="">歌词:
+                    <textarea name="lrc">__lrc__</textarea>
+                </label>
+            </div>
+            <div class="row">
                 <button type="submit" class="active">保存</button>
             </div>
         </form>
         `,
         render(data={}) {
-            let redata = ['name', 'url', 'singer', 'img']
+            let redata = ['name', 'url', 'singer', 'img', 'lrc']
             let html = this.template
             redata.map((string) => {
                 html = html.replace(`__${string}__`, data[string] || '')
@@ -50,7 +55,7 @@
             $(this.el).removeClass('active')
         },
         findUserDate(){
-            let needs = 'name url singer img'.split(' ')
+            let needs = 'name url singer img lrc'.split(' ')
             let data = {}
             needs.map((string) => {
                 data[string] = $(this.el).find(`[name="${string}"]`).val()
@@ -59,7 +64,7 @@
         },
     }
     let model = {
-        data: { id: '', name: '', singer: '', url: '' ,img: ''},
+        data: { id: '', name: '', singer: '', url: '', img: '', lrc: ''},
         update(data) {
             var todo = AV.Object.createWithoutData('Song', this.data.id);
             // 修改属性
@@ -67,6 +72,7 @@
             todo.set('name', data.name);
             todo.set('singer', data.singer);
             todo.set('img', data.img);
+            todo.set('lrc', data.lrc);
             // 保存到云端
             return todo.save();
         },
@@ -90,7 +96,7 @@
                 this.view.active()
                 this.view.render()
             })
-            $(this.view.el).on('click', 'input', (e) => {
+            $(this.view.el).on('click', 'input,textarea', (e) => {
                 this.view.deactiveBtn()
             })
             $(this.view.el).on('submit', 'form', (e) => {
