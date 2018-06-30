@@ -2,10 +2,16 @@
     let view = {
         el: '#app',
         render(data) {
-            // console.log(data)
+            console.log(data)
             $(this.el).find('.apppage').css('background-image', "url(" + data.img + ")")
             // console.log(0)
             $(this.el).find('audio').attr('src', data.url)
+            if ($(this.el).find('audio').attr('src') === data.url) {
+                let audio = $(this.el).find('audio').attr('src', data.url).get(0)
+                audio.ontimeupdate = () => {
+                    this.showLyric(audio.currentTime)
+                }
+            }
             $(this.el).find('.page').css('background-image', "url(" + data.img + ")")
             $(this.el).find('.name').text(data.name)
             $(this.el).find('.singer').text(data.singer)
@@ -22,10 +28,35 @@
                     let newTime = parseInt(minutes, 10) * 60 + parseFloat(seconds, 10)
                     p.setAttribute('data-time', newTime)
                 } else {
-                   p.textContent = string
+                    p.textContent = string
                 }
                 $(this.el).find('.lrc').append(p)
             })
+        },
+        showLyric(time) {
+            let allP = $(this.el).find('.lrc>p')
+            console.log(allP)
+            let p
+            for (let i = 0; i < allP.length; i++) {
+                if (i === allP.length - 1) {
+                    p = allP[i]
+                    break
+                } else {
+                    let currentTime = allP.eq(i).attr('data-time')
+                    let nextTime = allP.eq(i + 1).attr('data-time')
+                    if (currentTime <= time && time < nextTime) {
+                        p = allP[i]
+                        break
+                    }
+                }
+            }
+            let pHeight = p.getBoundingClientRect().top
+            let linesHeight = $(this.el).find('.lrc')[0].getBoundingClientRect().top
+            let height = pHeight - linesHeight
+            $(this.el).find('.lrc').css({
+                transform: `translateY(${- (height - 25)}px)`
+            })
+            $(p).addClass('active').siblings('.active').removeClass('active')
         },
         play() {
             let audio = $(this.el).find('audio')[0]
@@ -59,7 +90,10 @@
         setData(data) {
             var query = new AV.Query('Song');
             return query.get(data).then((song) => {
-                Object.assign(this.data, { id: song.id, ...song.attributes })
+                Object.assign(this.data, {
+                    id: song.id,
+                    ...song.attributes
+                })
             }, function (error) {
                 // 异常处理
             });
@@ -89,7 +123,7 @@
 
             })
             let audio = $(this.view.el).find('audio')[0]
-            $(audio).on('ended', ()=>{
+            $(audio).on('ended', () => {
                 this.view.pause()
                 this.view.active()
                 this.model.data.status = false
@@ -115,4 +149,3 @@
     }
     controller.init(view, model)
 }
-

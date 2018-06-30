@@ -293,3 +293,6 @@ h2{
         height: 50px;
     }
 }
+p.active {
+    color: white;
+}
