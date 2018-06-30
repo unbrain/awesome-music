@@ -2,7 +2,6 @@
     let view = {
         el: '#app',
         render(data) {
-            console.log(data)
             $(this.el).find('.apppage').css('background-image', "url(" + data.img + ")")
             // console.log(0)
             $(this.el).find('audio').attr('src', data.url)
@@ -35,7 +34,6 @@
         },
         showLyric(time) {
             let allP = $(this.el).find('.lrc>p')
-            console.log(allP)
             let p
             for (let i = 0; i < allP.length; i++) {
                 if (i === allP.length - 1) {
