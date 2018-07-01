@@ -2,7 +2,7 @@
     let view = {
         el: 'section.songs',
         template: `
-        <a class="songlink" href="./src/song.html?id={{song.id}}">
+        <a class="songlink" href="./song.html?id={{song.id}}">
               <div class="songDetail">
                 <div class="songName">
                   <h3>{{song.name}}</h3>
